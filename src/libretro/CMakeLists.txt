@@ -273,8 +273,9 @@ target_compile_definitions(melondsds_libretro PUBLIC
     STB_IMAGE_STATIC # To avoid using any dynamically-linked STB implementations
 )
 
-target_compile_definitions(melondsds_libretro PUBLIC MELONDS_GL_HEADER="PlatformOGLPrivate.h")
-target_compile_definitions(core PUBLIC MELONDS_GL_HEADER="PlatformOGLPrivate.h")
+get_filename_component(MELONDS_GL_HEADER_PATH "PlatformOGLPrivate.h" ABSOLUTE)
+target_compile_definitions(melondsds_libretro PUBLIC MELONDS_GL_HEADER="${MELONDS_GL_HEADER_PATH}")
+target_compile_definitions(core PUBLIC MELONDS_GL_HEADER="${MELONDS_GL_HEADER_PATH}")
 
 target_link_libraries(melondsds_libretro PUBLIC libretro-common core libretro-assets glm::glm pntr fmt::fmt date)
 
